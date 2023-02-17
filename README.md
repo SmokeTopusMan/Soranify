@@ -13,4 +13,4 @@ The app Comes with 5 Songs for example if you dont have a music directory.
 
 
 
-*The server cant work with an offline client and only working with live connections.
+*The server cant work with an offline client and only working with live connections.*
