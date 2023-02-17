@@ -40,7 +40,7 @@ def in_party(sock, leader_tid, tid):
                     sock.send(SONGS_DICT[MEMBER_DICT[tid]])
                     SONGS_DICT[MEMBER_DICT[tid]] = b""
             except socket.error:
-                remove_participant(leader_tid, MEMBER_DICT[tid])  # ToDO: change it to another message that the server is sending to the client in order to change the group
+                remove_participant(leader_tid, MEMBER_DICT[tid])
     except Exception as exp:
         print(exp)
     sock.send("0005".encode())
@@ -55,7 +55,7 @@ def song_exist(sock, length):
         if os.path.exists(fr"{sys.argv[1]}\{song}.mp3"):
             return True, song
     else:
-        if os.path.exists(fr"C:\Users\soran\Music\Amir's Super Funky Music\Amir's Super Playlist\amirs_playlist\{song}.mp3"):
+        if os.path.exists(fr"{song}.mp3"):
             return True, song
     return False, song
 
@@ -67,7 +67,7 @@ def send_song(sock, length, tid):
         if len(sys.argv) > 1:
             song_file = open(fr"{sys.argv[1]}\{song[1]}.mp3", 'rb')
         else:
-            song_file = open(fr"C:\Users\soran\Music\Amir's Super Funky Music\Amir's Super Playlist\amirs_playlist\{song[1]}.mp3", 'rb')
+            song_file = open(fr"{song[1]}.mp3", 'rb')
         data = song_file.read()
         data = (f"0001OK{str(len(song[1])).zfill(3)}{song[1]}".encode() + data + "0001END".encode())
         participant_list = PARTY_DICT[MEMBER_DICT[tid]]
